@@ -1,5 +1,6 @@
-from turtle import Turtle
+from turtle import Turtle,Screen
 import random
+Random_value=[-280, -270, -260, -250, -240, -230, -220, -210, -200, -190, -180, -170, -160, -150, -140, -130, -120, -110, -100, -90, -80, -70, -60, -50, -40, -30, -20, -10, 0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, 210, 220, 230, 240, 250, 260, 270, 280]
 STARTING_POSITION=[(0,0),(-10,0),(-20,0),(-30,0)]
 MOVE_DISTANCE=10
 up=90
@@ -60,8 +61,8 @@ class Food(Turtle):
         self.speed("fastest")
         self.refresh()
     def refresh(self):
-        random_x=random.randint(-280,280)
-        random_y=random.randint(-280,280)
+        random_x=(random.choice(Random_value)//10)*10
+        random_y=(random.choice(Random_value)//10)*10
         self.goto(random_x,random_y)
 Font=("Courier",15,"normal")
 Alignment="center"
@@ -77,7 +78,18 @@ class Scoreboard(Turtle):
     def game_over(self):
         self.setposition(0,0)
         self.write("GAME OVER!", align=Alignment,font=Font)
+        self.setposition(0,-20)
+        self.write("Press space to restart", align=Alignment,font=Font)
+    def clear_score(self):
+        self.score = 0
     def increase_score(self):
         self.score+=1
         self.clear()
         self.write(f"Score: {self.score}", align=Alignment,font=Font)
+
+#class newgame(Screen):
+#	def __init__(self):
+#		super().__init__()
+#	def new(self):
+#		self.clearscreen()
+		
